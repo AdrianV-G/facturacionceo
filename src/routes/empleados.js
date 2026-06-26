@@ -16,7 +16,7 @@ router.get(
     query('q').optional().trim().escape(),
     query('activo').optional().isBoolean(),
     query('page').optional().isInt({ min: 1 }).toInt(),
-    query('limit').optional().isInt({ min: 1, max: 100 }).toInt(),
+    query('limit').optional().isInt({ min: 1, max: 200 }).toInt(),
   ],
   handleValidation,
   async (req, res) => {
