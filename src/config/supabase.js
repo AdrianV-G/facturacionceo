@@ -10,13 +10,15 @@ const getSupabase = () => {
     _supabase = createClient(
       process.env.SUPABASE_URL,
       process.env.SUPABASE_SERVICE_KEY,
-      { auth: { persistSession: false } }
+      {
+        auth: { persistSession: false },
+        realtime: { transport: require('ws') }, // Fix para Node 20
+      }
     );
   }
   return _supabase;
 };
 
-// Proxy para mantener la API igual: supabase.from(...), supabase.storage...
 const supabase = new Proxy(
   {},
   {
